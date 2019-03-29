@@ -1,0 +1,148 @@
+body {
+    background-image: url("images/background.jpg");
+    background-image: linear-gradient(to top, #000, #FFF);
+    background-size:100%;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+}
+
+/* MENU */
+#menu {
+    width: 880px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#menu ul {
+    padding:0;
+    margin:0;
+    list-style-type:none;
+    overflow:hidden;
+    background-image: linear-gradient(to top, #7CD6FD, #66C1F0);
+    opacity:0.8;
+}
+
+#menu li {
+    float:left;
+    margin-left: 4%;
+    font-size: 20px;
+}
+#menu ul li a {
+    display:block;
+    color: #FFFFFF;
+    text-align:center;
+    padding: 14px 16px;
+    text-decoration:none;
+    font-family:"Lucida Console", Monaco, monospace;
+}
+#menu ul li a:hover {
+    background-color:#D3D3D3;
+    opacity:0.9;
+    color: #FF0000;
+    font-style: oblique;
+    border-color: #727776 #E3EBE9 #E3EBE9 #727776;
+}
+
+/* CONTENU */
+#contenu {
+    width: 880px;
+    margin-top:2%;
+    margin-right: auto;
+	margin-left: auto;
+    border:1px solid #D3D3D3;
+    background-color: rgba(255,255,255,0.6);
+}
+
+#contenu a {
+    text-decoration: none;
+    color:#FFFFFF;
+}
+
+#contenu #image{
+    display:inline-block;
+    width:43%;
+    height:28%;
+    margin-right: 5%;
+}
+
+aside {
+    position:fixed;
+    float:right;
+    width:250px;
+    top: 100;
+    left: 1450;
+}
+div .marge {
+    margin-left:2%;
+    margin-right:2%;
+    margin-top:2%;
+    margin-bottom:2%;
+}
+
+.police {
+    font-family:"Bradley Hand", cursive;
+    color:#777;
+    text-align: justify;
+}
+
+.title {
+    display:block;
+    background-image: linear-gradient(to right, #7CD6FD, #3C738A);
+    text-align: center;
+    font-family:"Lucida Console", Monaco, monospace;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    border-radius: 100px;
+}
+
+.forme {
+    font-family:"Courier New", Courier, monospace;
+}
+
+.champ {
+    border-radius:10px;
+    box-shadow: 5px 5px 5px #DDD;
+}
+
+.submit {
+    font-size:16px;
+    margin-top:10px;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #85A2CE, #4F617B);
+    box-shadow: 5px 5px 5px #DDD;
+    width:75%;
+    font-family:"Lucida Console", Monaco, monospace;
+    color: #FFFFFF;
+    margin-left: 10%;
+}
+
+figure {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+figure:hover figcaption {
+    top: -100px;
+}
+
+figcaption {
+    position:relative;
+    top:-60px;
+    background: rgba(211,211,211, 0.4);
+    color: #FFFFFF;
+    -webkit-transition: top 0.8s;
+    -moz-transition: top 0.8s;
+    -ms-transition: top 0.8s;
+    -o-transition: top 0.8s;
+    transition: top 0.8s;
+}
+
+p {
+    font-size:15px;
+}
+
+img {
+    width: 100%;
+	height: 100%;
+}
