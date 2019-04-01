@@ -1,7 +1,7 @@
 <?php
 session_start();
-
 include 'connect.php';
+const POINTS_MANCHE=5;
 ?>
 
 <html>
@@ -146,7 +146,7 @@ $reqJoueurVicTot->bindValue(':pwd', $_SESSION['pwdJoueur'], PDO::PARAM_STR);
 
 
 // Si le joueur gagne
-if ($_SESSION['cptJoueur']==5){
+if ($_SESSION['cptJoueur']==POINTS_MANCHE){
     echo '<h4 style="color:green;">Victoire</h4>';
     $finDuGame=''; // Création de la variable pour prévenir que c'est la fin du jeu
     resetCpt(); // Reset les compteurs
@@ -157,7 +157,7 @@ if ($_SESSION['cptJoueur']==5){
 }
 // Si l'ordi gagne
 
-elseif ($_SESSION['cptOrdi']==5){
+elseif ($_SESSION['cptOrdi']==POINTS_MANCHE){
     echo '<h4 style="color:red;">Défaite</h4>';
     $finDuGame=''; // Création de la variable pour prévenir que c'est la fin du jeu
     resetCpt(); // Reset les compteurs

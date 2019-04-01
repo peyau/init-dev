@@ -14,8 +14,6 @@
 <?php include("navigation.php"); ?>
 </div>
 
-<?php include("aside.php")?>
-
 <div id="contenu">
 <p>Réseaux sociaux ici</p>
 </div>
