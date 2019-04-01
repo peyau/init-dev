@@ -2,6 +2,13 @@
 // connexion à la base de données
 include('connect.php');
 
+// si la page index est affichée suite à un ajout
+if (isset($_POST['bvalider']))
+{
+	include('recupdata.php');
+	include('insert.php');
+}
+
 // récupération des limites d'affichage des données
 if (isset($_GET['debut'])) { $debut=(int)($_GET['debut']); } else { $debut=0; }
 $nombre=10; // c'est le nombre d'enregistrements affichés sur une page
@@ -30,7 +37,7 @@ if (isset($_GET['rnom'])) { $rnom = $_GET['rnom'] ; } else { $rnom=''; }
 
 // Formulaire permettant de sélectionner l'ordre dans lequel doivent apparaître les informations
 ?>
-<form method="GET" action="index.php">
+<form method="GET" action="index.php" name="frech">
 Recherche : <br />
 Nom : <input type="text" name="rnom" value="<?php echo $rnom; ?>" /><br />
 Trier les informations par :
@@ -46,6 +53,12 @@ Trier les informations par :
 <label for="croissant">Décroissant</label>
 
 <input type="submit" name="bappliquer" value="Appliquer" />
+
+<script type="text/javascript">
+document.frech.rnom.focus();
+</script>
+
+
 </form>
 
 <?php
@@ -115,5 +128,8 @@ else
 	}	
 
 	$req->closeCursor();
+
 }
 ?>
+<br /><br />
+<a href="ajout.php">Ajouter</a>
