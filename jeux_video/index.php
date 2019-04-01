@@ -6,7 +6,22 @@ include('connect.php');
 if (isset($_POST['bvalider']))
 {
 	include('recupdata.php');
-	include('insert.php');
+	if ($_POST['encours'])
+	{
+		if ($_POST['encours']==-1) 
+		{
+			include('insert.php');
+		}
+		else
+		{	
+			$encours = $_POST['encours'];
+			include('update.php');
+		}
+	}
+	else
+	{
+		echo ('La commande n\'a pas pu être exécutée');
+	}
 }
 
 // récupération des limites d'affichage des données
@@ -117,7 +132,8 @@ else
 		echo '<td>'.$donnees['console'].'</td>';
 		echo '<td>'.$donnees['prix'].'</td>';
 		echo '<td>'.$donnees['nbre_joueurs_max'].'</td>';
-		echo '<td>'.$donnees['commentaires'].'</td></tr>';
+		echo '<td>'.$donnees['commentaires'].'</td>';
+		echo '<td><a href="modif.php?id='.$donnees['ID'].'">Modifier</a></td></tr>';
 	}	
 
 	echo '</table><br />-';

@@ -10,8 +10,13 @@
 
 <tr><td colspan="2"><input type="submit" name="bvalider" value="Valider" />
     <input type="submit" name="bannuler" value="Annuler" /></td></tr>
+	
+<input type="hidden" name="encours" value="<?php echo $encours; ?>" />
 
 </table>
 
+<script type="text/javascript">
+document.fjeux.enom.focus();
+</script>
 
 </form>
