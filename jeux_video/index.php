@@ -59,7 +59,7 @@ else
 	$where = 'WHERE nom LIKE :rnom ';
 }
 
-$rech = $rnom.'%';
+$rech = '%' .  $rnom . '%';
 
 // calcul du nombre de pages
 $req = $bdd->prepare('SELECT COUNT(*) FROM jeux_video ' . $where);
