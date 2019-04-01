@@ -56,8 +56,10 @@ if ($rnom=='')
 } 
 else
 {
-	$where = 'WHERE nom = :rnom ';
+	$where = 'WHERE nom LIKE :rnom ';
 }
+
+$rech = $rnom.'%';
 
 // calcul du nombre de pages
 $req = $bdd->prepare('SELECT COUNT(*) FROM jeux_video ' . $where);
@@ -67,44 +69,51 @@ if ($rnom=='')
 }
 else
 {
-	$req->execute(array(':rnom'=>$rnom));
+	$req->execute(array(':rnom'=>$rech));
 }
 $rep = $req->fetch();
 $nbenreg = $rep[0]; // récupération du nombre d'enregistrements présents dans la table
 $req->closeCursor();
 
-//Le nombre de pages est égal au nombre d'enregistrements / nb enreg par page
-$nbpages=ceil($nbenreg/$nombre);
-
-// Ordre croissant ou décroissant ?
-$str_croissant = ($croissant == 1) ? '' : ' DESC' ;
-
-// preparation de la requête
-$req = $bdd->prepare('SELECT * FROM jeux_video ' . $where .' ORDER BY ' . $ordre . $str_croissant . ' LIMIT :debut, :nombre') or die(print_r($bdd->errorInfo()));
-if ($rnom!='') { $req->bindParam(':rnom', $rnom, PDO::PARAM_STR); }
-$req->bindParam(':debut', $debut, PDO::PARAM_INT);
-$req->bindParam(':nombre', $nombre, PDO::PARAM_INT);
-$req->execute();
-
-echo '<table border="1">';
-echo '<tr><td>Nom</td><td>Possesseur</td><td>Console</td><td>Prix</td><td>Nb de joueurs max.</td><td>Commentaire</td></tr>';
-while ($donnees = $req->fetch())
+if ($nbenreg==0)
 {
-	echo '<tr><td>'.$donnees['nom'].'</td>';
-	echo '<td>'.$donnees['possesseur'].'</td>';
-	echo '<td>'.$donnees['console'].'</td>';
-	echo '<td>'.$donnees['prix'].'</td>';
-	echo '<td>'.$donnees['nbre_joueurs_max'].'</td>';
-	echo '<td>'.$donnees['commentaires'].'</td></tr>';
+	echo 'Aucun enregistrement ne correspond au critère de recherche';
 }
-echo '</table><br />-';
-
-for ($i=1 ; $i<=$nbpages ; $i++)
+else
 {
- echo ' <a href="index.php?rnom=' . $rnom . '&amp;ordre=' . $ordre . '&amp;croissant=' . $croissant . '&amp;debut=' . ($i-1)*$nombre .'">' .$i . '</a> -';
 
+	//Le nombre de pages est égal au nombre d'enregistrements / nb enreg par page
+	$nbpages=ceil($nbenreg/$nombre);
+
+	// Ordre croissant ou décroissant ?
+	$str_croissant = ($croissant == 1) ? '' : ' DESC' ;
+
+	// preparation de la requête
+	$req = $bdd->prepare('SELECT * FROM jeux_video ' . $where .' ORDER BY ' . $ordre . $str_croissant . ' LIMIT :debut, :nombre') or die(print_r($bdd->errorInfo()));
+	if ($rnom!='') { $req->bindParam(':rnom', $rech , PDO::PARAM_STR); }
+	$req->bindParam(':debut', $debut, PDO::PARAM_INT);
+	$req->bindParam(':nombre', $nombre, PDO::PARAM_INT);
+	$req->execute();
+
+	echo '<table border="1">';
+	echo '<tr><td>Nom</td><td>Possesseur</td><td>Console</td><td>Prix</td><td>Nb de joueurs max.</td><td>Commentaire</td></tr>';
+	while ($donnees = $req->fetch())
+	{
+		echo '<tr><td>'.$donnees['nom'].'</td>';
+		echo '<td>'.$donnees['possesseur'].'</td>';
+		echo '<td>'.$donnees['console'].'</td>';
+		echo '<td>'.$donnees['prix'].'</td>';
+		echo '<td>'.$donnees['nbre_joueurs_max'].'</td>';
+		echo '<td>'.$donnees['commentaires'].'</td></tr>';
+	}	
+
+	echo '</table><br />-';
+
+	for ($i=1 ; $i<=$nbpages ; $i++)
+	{
+		echo ' <a href="index.php?rnom=' . $rnom . '&amp;ordre=' . $ordre . '&amp;croissant=' . $croissant . '&amp;debut=' . ($i-1)*$nombre .'">' .$i . '</a> -';
+	}	
+
+	$req->closeCursor();
 }
-
-$req->closeCursor();
-
 ?>
