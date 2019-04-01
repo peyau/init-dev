@@ -1,13 +1,13 @@
 <?php
-// connexion à la base de données
+// connexion ï¿½ la base de donnï¿½es
 include('connect.php');
 
-// récupération des limites d'affichage des données
+// rï¿½cupï¿½ration des limites d'affichage des donnï¿½es
 if (isset($_GET['debut'])) { $debut=(int)($_GET['debut']); } else { $debut=0; }
-$nombre=10; // c'est le nombre d'enregistrements affichés sur une page
+$nombre=10; // c'est le nombre d'enregistrements affichï¿½s sur une page
 
-// Récupération de l'ordre d'affichage (par défaut, sur le nom du jeu)
-if (isset($_GET['ordre'])) 
+// Rï¿½cupï¿½ration de l'ordre d'affichage (par dï¿½faut, sur le nom du jeu)
+if (isset($_GET['ordre']))
 { 	switch ($_GET['ordre'])
 	{
 		case 'possesseur' : $ordre = $_GET['ordre']; break;
@@ -16,41 +16,47 @@ if (isset($_GET['ordre']))
 		case 'nbre_joueurs_max' : $ordre = $_GET['ordre']; break;
 		default : $ordre = 'nom';
 	}
-} 
+}
 else
 {
 	$ordre = 'nom';
 }
+// Croissant ou dï¿½croissant ?
+if (isset($_GET['croissant'])) { $croissant = ($_GET['croissant']); } else { $croissant=1; }
 
-// Formulaire permettant de sélectionner l'ordre dans lequel doivent apparaître les informations
-
+// Formulaire permettant de sï¿½lectionner l'ordre dans lequel doivent apparaï¿½tre les informations
 ?>
-
 <form method="GET" action="index.php">
 Trier les informations par :
 <select name="ordre">
 	<option value="nom" <?php if ($ordre=='nom') echo 'SELECTED'; ?>>nom du jeu</option>
 	<option value="possesseur" <?php if ($ordre=='possesseur') echo 'SELECTED'; ?>>possesseur du jeu</option>
 	<option value="console" <?php if ($ordre=='console') echo 'SELECTED'; ?>>console</option>
-	<option value="prix" <?php if ($ordre=='prix') echo 'SELECTED'; ?>>prix</option>	
+	<option value="prix" <?php if ($ordre=='prix') echo 'SELECTED'; ?>>prix</option>
 	<option value="nbre_joueurs_max" <?php if ($ordre=='nbre_joueurs_max') echo 'SELECTED'; ?>>nombre de joueurs maximum</option>
 </select>
+
+<input type="checkbox" name="croissant" id="croissant" <?php if ($croissant==0) { echo 'CHECKED';} ?>/>
+<label for="croissant">DÃ©croissant</label>
+
 <input type="submit" name="bappliquer" value="Appliquer" />
 </form>
 
 <?php
-
 // calcul du nombre de pages
-$req = $bdd->query('SELECT COUNT(*) FROM jeux_video'); 
+$req = $bdd->query('SELECT COUNT(*) FROM jeux_video');
 $rep = $req->fetch();
-$nbenreg = $rep[0]; // récupération du nombre d'enregistrements présents dans la table
+$nbenreg = $rep[0]; // rï¿½cupï¿½ration du nombre d'enregistrements prï¿½sents dans la table
 $req->closeCursor();
 
-//Le nombre de pages est égal au nombre d'enregistrements / nb enreg par page
+//Le nombre de pages est ï¿½gal au nombre d'enregistrements / nb enreg par page
 $nbpages=ceil($nbenreg/$nombre);
 
-// preparation de la requête
-$req = $bdd->prepare('SELECT * FROM jeux_video ORDER BY ' . $ordre . ' LIMIT :debut, :nombre') or die(print_r($bdd->errorInfo()));
+// Ordre croissant ou dï¿½croissant ?
+$str_croissant = ($croissant == 1) ? '' : ' DESC' ;
+
+// preparation de la requï¿½te
+$req = $bdd->prepare('SELECT * FROM jeux_video ORDER BY ' . $ordre . $str_croissant . ' LIMIT :debut, :nombre') or die(print_r($bdd->errorInfo()));
 $req->bindParam(':debut', $debut, PDO::PARAM_INT);
 $req->bindParam(':nombre', $nombre, PDO::PARAM_INT);
 $req->execute();
@@ -70,7 +76,7 @@ echo '</table><br />-';
 
 for ($i=1 ; $i<=$nbpages ; $i++)
 {
- echo ' <a href="index.php?ordre=' . $ordre . '&amp;debut=' . ($i-1)*$nombre .'">' .$i . '</a> -';
+ echo ' <a href="index.php?ordre=' . $ordre . '&amp;croissant=' . $croissant . '&amp;debut=' . ($i-1)*$nombre .'">' .$i . '</a> -';
 
 }
 
