@@ -1,0 +1,20 @@
+<?php
+
+
+$fichier = fopen('file.txt', 'r+');
+
+
+
+/*while ($ligne= fgets($fichier)){
+  echo $ligne. '<br>';
+};
+fseek($fichier, 0); // On remet le curseur au début du fichier
+fputs($fichier, 'Albert'.PHP_EOL); //ajout d'un nouvel élément au fichier txt - PHP EOL=Retour à la ligne*/
+
+$pages_vues = fgets($fichier);
+$pages_vues += 1;
+fseek($fichier, 0);
+fputs($fichier, $pages_vues);
+echo 'Cette page a été vue ' . $pages_vues . ' fois !';
+
+fclose($fichier);
