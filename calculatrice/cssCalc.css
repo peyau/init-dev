@@ -1,0 +1,19 @@
+.bouton
+{
+	border: 1px solid black;
+	font-weight: bolder;
+
+}
+
+input
+{
+	height: 50px;
+	width: 50px;
+	cursor: pointer;
+	font-size: 45px;
+}
+
+#zoneChiffre
+{
+	width: 224px;
+}
