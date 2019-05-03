@@ -1,7 +1,7 @@
 <?php
 // Connexion à la base de données
 $hostname='localhost';
-$dbname='premiere_appli';
+$dbname='projet_web';
 $username='root';
 $password='';
 

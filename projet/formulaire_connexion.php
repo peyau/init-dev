@@ -1,4 +1,4 @@
-<!doctype>
+<!DOCTYPE HTML>
 <meta charset=UTF-8>
 
 <html>
@@ -7,9 +7,10 @@
         <link rel="stylesheet" type="text/css" href="CSS/style.css">
     </head>
 
+
 <!-- BODY -->
 <body>
-    <form method="" actiona="">
+    <form method="post" action="">
         Identifiant :<br>
         <input type="text" name="identifiant">
         Mot de passe :<br>
@@ -18,7 +19,7 @@
     </form>
 
 
-    
+
 
 </body>
 </html>

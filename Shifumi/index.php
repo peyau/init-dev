@@ -44,7 +44,7 @@ if(isset($_POST['nom']) && isset($_POST['password'])){
     // Vérifier le contenu de cette variable
     if($nbLigne==1){ // Si la requête renvoie quelque chose, on effectue la connexion
         echo '<td>Redirection en cours...</td>';
-        
+
         $donnees = $reqConnect->fetch();
         $_SESSION['nomJoueur']=$donnees['nom'];
         $_SESSION['pwdJoueur']=$donnees['pwd'];

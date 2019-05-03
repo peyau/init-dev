@@ -1,4 +1,4 @@
-<!doctype>
+<!DOCTYPE HTML>
 <meta charset=UTF-8>
 
 <html>

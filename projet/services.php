@@ -1,4 +1,4 @@
-<!doctype>
+<!DOCTYPE HTML>
 <meta charset=UTF-8>
 
 <html>
@@ -14,7 +14,7 @@
 <?php include("navigation.php"); ?>
 </div>
 
-<?php include("aside.php")?>
+<?php include("aside.php"); ?>
 
 <div id="contenu">
 
