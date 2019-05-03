@@ -1,11 +1,11 @@
 <?php
 session_start();
 const MAX_ESSAIS=10;
+$alphabet=range('a', 'z');
 
 //session_destroy();
 $_SESSION['essais'] = isset($_SESSION['essais']) ? $_SESSION['essais'] : 0;
 //$_SESSION['essais'] = $_SESSION['essais'] ?? 0;
-
 $mots = [
     'coquelicot',
     'cinema',
@@ -16,18 +16,17 @@ $mots = [
     'chinoises',
     'bijouterie'
 ];
-
-if ($_SESSION['essais']==0){
+if(!in_array($_POST['lettre'], $alphabet)){
+    echo 'Ce n\'est pas une lettre de l\'alphabet <br>';
+}
+else if ($_SESSION['essais']==0){
     $nbAleatoire=rand(0, count($mots)-1);
     $_SESSION['mot']=$mots[$nbAleatoire];
     //echo 'test';
     $_SESSION['lettreMot']=array_unique(str_split($_SESSION['mot'])); // Explode un mot et supprime les doublons du tableau
-
     $_SESSION['alphabet']=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'x', 'z'];
     $_SESSION['essais']=MAX_ESSAIS;
-
     $_SESSION['lettresUtilisees']=[]; // -> Lettre utilisée dans un array_push + vérif sur le tableau après?
-
 } elseif(isset($_POST['lettre']) && !empty($_POST['lettre'])) {
     if (in_array($_POST['lettre'], $_SESSION['lettresUtilisees'])) { // Si la lettre existe dans le tableau
         echo 'La lettre a déjà été utilisée<br>'; // On affiche qu'elle existe déjà
@@ -54,7 +53,6 @@ if ($_SESSION['essais']==0){
         }
     }
 }
-
 //echo '<pre>';
 //print_r($_SESSION['lettreMot']);
 //print_r($_SESSION['alphabet']);
@@ -68,7 +66,6 @@ if (!strstr(str_replace($_SESSION['alphabet'], '_ ', $_SESSION['mot']), '_')) { 
     $_SESSION['alphabet']=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'x', 'z'];  // Le tableau est à nouveau rempli
     $_SESSION['lettresUtilisees']=[]; // Reset les lettres utilisées
 }
-
 ?>
 
 <form action="" method="post">

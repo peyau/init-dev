@@ -14,8 +14,6 @@
 <?php include("navigation.php"); ?>
 </div>
 
-<?php include("aside.php")?>
-
 <div id="contenu">
 <p>Les tarifs ici</p>
 </div>

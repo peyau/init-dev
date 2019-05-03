@@ -17,7 +17,6 @@
 <?php include("aside.php"); ?>
 
 <div id="contenu">
-
 <p>Ici les services</p>
 </div>
 

@@ -14,9 +14,15 @@
 <?php include("navigation.php"); ?>
 </div>
     <?php include("aside.php");?>
+
+
 <div id="contenu">
 
-
+    <aside>
+        <div class="marge">
+            <?php include("formulaire_connexion.php")?>
+        </div>
+    </aside>
 
     <div id="image">
         <figure>

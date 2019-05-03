@@ -1,0 +1,29 @@
+<?php
+
+if (isset($_POST["todo"])){
+  $fichier = fopen('file3.txt', 'a+');
+  $i=0;
+  while ($ligne= fgets($fichier)){
+    $i++;
+  }
+  $i++;
+
+  fseek($fichier, $i);
+  fputs($fichier, $_POST["todo"]. PHP_EOL);
+}
+
+  fclose($fichier);
+
+ ?>
+
+
+
+<form action="" method="POST">
+  <div>
+    <label>TODO</label>
+    <input type="text" name="todo">
+  </div>
+  <div>
+    <input type="submit" value="envoyer">
+  </div>
+</form>

@@ -1,9 +1,7 @@
 body {
     background-image: url("images/background.jpg");
-    background-image: linear-gradient(to top, #000, #FFF);
-    background-size:100%;
+    background-size: 100%;
     background-repeat:no-repeat;
-    background-attachment: fixed;
 }
 
 /* MENU */
@@ -18,13 +16,13 @@ body {
     margin:0;
     list-style-type:none;
     overflow:hidden;
-    background-image: linear-gradient(to top, #7CD6FD, #66C1F0);
+    background-color: #66C1F0;
     opacity:0.8;
 }
 
 #menu li {
     float:left;
-    margin-left: 4%;
+    margin-left: 7%;
     font-size: 20px;
 }
 #menu ul li a {
@@ -33,7 +31,6 @@ body {
     text-align:center;
     padding: 14px 16px;
     text-decoration:none;
-    font-family:"Lucida Console", Monaco, monospace;
 }
 #menu ul li a:hover {
     background-color:#D3D3D3;
@@ -60,60 +57,20 @@ body {
 
 #contenu #image{
     display:inline-block;
-    width:43%;
-    height:28%;
+    width:30%;
+    height:25%;
     margin-right: 5%;
 }
 
-aside {
-    position:fixed;
+#contenu aside {
     float:right;
-    width:250px;
-    top: 100px;
-    left: 1450px;
+    width:19%;
+    margin-top:2%;
+    border: 1px solid;
+    margin-right:5%;
 }
 div .marge {
     margin-left:2%;
-    margin-right:2%;
-    margin-top:2%;
-    margin-bottom:2%;
-}
-
-.police {
-    font-family:"Bradley Hand", cursive;
-    color:#777;
-    text-align: justify;
-}
-
-.title {
-    display:block;
-    background-image: linear-gradient(to right, #7CD6FD, #3C738A);
-    text-align: center;
-    font-family:"Lucida Console", Monaco, monospace;
-    color: #FFFFFF;
-    margin-bottom: 20px;
-    border-radius: 100px;
-}
-
-.forme {
-    font-family:"Courier New", Courier, monospace;
-}
-
-.champ {
-    border-radius:10px;
-    box-shadow: 5px 5px 5px #DDD;
-}
-
-.submit {
-    font-size:16px;
-    margin-top:10px;
-    border-radius: 10px;
-    background-image: linear-gradient(to right, #85A2CE, #4F617B);
-    box-shadow: 5px 5px 5px #DDD;
-    width:75%;
-    font-family:"Lucida Console", Monaco, monospace;
-    color: #FFFFFF;
-    margin-left: 10%;
 }
 
 figure {
@@ -123,7 +80,7 @@ figure {
 }
 
 figure:hover figcaption {
-    top: -100px;
+    top: -95px;
 }
 
 figcaption {

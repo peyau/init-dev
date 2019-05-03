@@ -5,18 +5,24 @@ $password = '1234';
 
 if(isset($_GET['deconnexion'])) {
     session_destroy();
-    header('location:login.php');
+    header('location:login.php'); // Le header doit être utilisé avant qu'il y ait du texte sur la page
     exit();
+}
+
+if(isset($_SESSION['message'])) {
+    echo implode('<br>', $_SESSION['message']);
+    unset($_SESSION['message']); // Suppression de cette variable pour que le message ne s'affiche qu'une fois
 }
 
 if (isset($_POST['username'], $_POST['password'])
 && $_POST['username']===$username
 && $_POST['password']===$password){
+    header('location:todo.php');
     echo 'Identifiants corrects';
     $_SESSION['username']=$_POST['username'];
     echo ' <a href="?deconnexion">Deconnexion</a>';
     exit();
-} else {
+} else if($_POST) {
     echo 'Identifiants incorrects';
 }
 
