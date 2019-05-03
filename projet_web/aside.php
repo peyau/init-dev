@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['test']='Bonjour';
+
 include 'connect.php';
 ?>
 
@@ -38,9 +38,6 @@ if (isset($_GET['deconnexion'])){
     header("location: ".$_SERVER["PHP_SELF"]); // Pour rafraichir la page active
 }
 
-if (isset($_GET['inscription'])){
-    header("location:formInscription.php"); 
-}
 ?>
 <!-- BODY -->
 <body>
@@ -54,20 +51,13 @@ if (isset($_GET['inscription'])){
         </p>
         <div class="marge">
             <?php
-            if(!isset($_SESSION['prenomUtilisateur'])){
-                echo '<span class="title">Connexion</span>
-                <form method="post" action="">
-                    <span class="forme">Identifiant :</span><br>
-                    <input type="text" name="identifiant" class="champ"><br>
-                    <span class="forme">Mot de passe :</span><br>
-                    <input type="password" name="mdp" class="champ">
-                    <input type="submit" value="Se connecter" class="submit">
-                    <a href="?inscription" class="noDecoration"><input type="button" value="S\'inscrire" class="submit"></a>
-                </form>';
+            if (isset($_GET['connexion'])){
+                include 'formConnexion.php';
+            } elseif (isset($_GET['inscription'])) {
+                include 'formInscription.php';
             }
-            else{
-                echo '<p class="info">Bonjour ' . ucfirst($_SESSION['prenomUtilisateur']) . '</p>';
-                echo '<a href="?deconnexion" class="noDecoration"><input type="button" value="Déconnexion" class="submit"></a>';
+            if (!isset($_GET['connexion']) && !isset($_GET['inscription'])){
+                echo '<a href="?connexion" class="noDecoration"><input type="button" value="Formulaire" class="submit"></a>';
             }
             ?>
         </div>
