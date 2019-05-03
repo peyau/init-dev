@@ -13,7 +13,34 @@ include 'connect.php';
         <link rel="stylesheet" type="text/css" href="CSS/style.css">
     </head>
 <?php
-if(isset($_POST['identifiant']) && isset($_POST['mdp'])){
+// inscription
+if(isset($_POST['submit']) && isset($_GET['inscription'])){
+    $identifiant = isset($_POST['identifiant']) ? $_POST['identifiant'] : '';
+    $mdp = isset($_POST['mdp']) ? $_POST['mdp'] : '';
+    $nom = isset($_POST['nom']) ? $_POST['nom'] : '';
+    $prenom = isset($_POST['prenom']) ? $_POST['prenom'] : '';
+    $mail = isset($_POST['mail']) ? $_POST['mail'] : '';
+
+    $reqAddUser=$bdd->prepare('INSERT INTO utilisateur (id, identifiant, mdp, nom, prenom, mail, niveau) VALUES (NULL, :identifiant, :mdp, :nom, :prenom, :mail, 1)');
+    // Premiere méthode
+    $resultatReq = $reqAddUser->execute([
+        'identifiant' => $mail,
+        'mdp' => $mdp,
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'mail' => $mail
+    ]);
+
+    if($resultatReq) {
+        $_SESSION['validation']=TRUE;
+    } else {
+        $_SESSION['validation']=FALSE;
+        //echo print_r($reqAddUser->errorInfo());
+    }
+}
+
+// Connexion
+if(isset($_POST['identifiant']) && isset($_POST['mdp']) && isset($_GET['connexion'])){
     // Préparation de la requête
     $reqConnect = $bdd->prepare("SELECT * FROM utilisateur WHERE identifiant=:identifiant AND mdp=:mdp");
     // Association des valeurs
