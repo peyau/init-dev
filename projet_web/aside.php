@@ -64,6 +64,9 @@ if (isset($_GET['deconnexion'])){
     session_unset();
     header("location: ".$_SERVER["PHP_SELF"]); // Pour rafraichir la page active
 }
+if (isset($_GET['cacher'])){
+    header("location: ".$_SERVER["PHP_SELF"]);
+}
 
 ?>
 <!-- BODY -->

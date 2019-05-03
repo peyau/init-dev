@@ -1,6 +1,7 @@
 <?php
 if(!isset($_SESSION['prenomUtilisateur'])){
     echo '<span class="title">Connexion</span>
+    <a href="?cacher" class="noDecoration"><input type="button" class="submit" value="Cacher"></a>
     <form method="post" action="">
         <span class="forme">Identifiant :</span><br>
         <input type="text" name="identifiant" class="champ" required><br>

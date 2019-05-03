@@ -2,6 +2,7 @@
 
 if(!isset($_SESSION['prenomUtilisateur'])){
     echo '<span class="title">Inscription</span>
+    <a href="?cacher" class="noDecoration"><input type="button" class="submit" value="Cacher"></a>
     <form method="post" action="">
         <span class="forme">Nom :</span><br>
         <input type="text" name="nom" class="champ "><br>
