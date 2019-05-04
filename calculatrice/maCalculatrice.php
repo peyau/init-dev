@@ -86,7 +86,12 @@ switch($commande){
                 $_SESSION['C'] = $_SESSION['nb1'] * $_SESSION['nb2'];
             break;
             case '/' :
-                $_SESSION['C'] = $_SESSION['nb1'] / $_SESSION['nb2'];
+                if (substr($_SESSION['nb2'], 0, 1)=='0') {
+                    $_SESSION['C'] = 'Division par 0';
+                } else {
+                    $_SESSION['C'] = $_SESSION['nb1'] / $_SESSION['nb2'];
+                }
+
             break;
         }
 
