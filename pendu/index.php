@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'connect.php';
 const MAX_ESSAIS = 10;
 $alphabet = range('a', 'z');
 $_SESSION['essais'] = isset($_SESSION['essais']) ? $_SESSION['essais'] : 0;
@@ -7,20 +8,16 @@ $_SESSION['essais'] = isset($_SESSION['essais']) ? $_SESSION['essais'] : 0;
 /*unset($_SESSION);
 session_destroy();
 exit;*/
-$mots  = [
-  "coquelicot",
-  "cinema",
-  "patate",
-  "reminiscence",
-  "chat",
-  "doubleur",
-  "chinoises",
-  "bijouterie"
-];
+$tabMot = array();
+$req = "SELECT mot FROM mots";
+foreach ($bdd->query($req) as $row) {
+    $tabMot[] = $row['mot'];
+}
+implode($tabMot);
 
 if($_SESSION['essais'] === 0) {
-  $position = rand(0, count($mots)-1);
-  $_SESSION['mot'] = $mots[$position];
+  $position = rand(0, count($tabMot)-1);
+  $_SESSION['mot'] = $tabMot[$position];
   $explodeWord = str_split($_SESSION['mot']);
   $_SESSION['lettres_mot'] = array_unique($explodeWord);
   $_SESSION['essais'] = MAX_ESSAIS;
