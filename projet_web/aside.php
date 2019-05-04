@@ -24,7 +24,7 @@ if(isset($_POST['submit']) && isset($_GET['inscription'])){
     $reqAddUser=$bdd->prepare('INSERT INTO utilisateur (id, identifiant, mdp, nom, prenom, mail, niveau) VALUES (NULL, :identifiant, :mdp, :nom, :prenom, :mail, 1)');
     // Premiere méthode
     $resultatReq = $reqAddUser->execute([
-        'identifiant' => $mail,
+        'identifiant' => $identifiant,
         'mdp' => $mdp,
         'nom' => $nom,
         'prenom' => $prenom,
